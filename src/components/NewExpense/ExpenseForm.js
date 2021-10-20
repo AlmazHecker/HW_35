@@ -15,15 +15,12 @@ const ExpenseForm = props => {
         setDate(e.target.value);
     }
     const submitHandler = (e) => {
-        // при нажатии на submitHandler
-        // создается бд
         e.preventDefault();
         let data = {
             title: enteredTitle,
             amount: enteredAmount,
             date: new Date(enteredDate),
         }
-        // TODO: и отправляется в NewExpense.js
 
         if(enteredTitle === '' || enteredAmount === '' || enteredDate === ''){
             return alert('какое то поле осталось пустым :(');
