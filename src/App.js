@@ -36,16 +36,14 @@ function App() {
 
   function addExpenseHundler(expense) {
     setExpenseData([
-      ...expenseData, // данные, которые были в бд 
-      expense //TODO: данные которые мы добавляем в бд
+      ...expenseData,  
+      expense
     ])
   }
 
   return (
     <div>
-      {/* TODO: в качестве пропы мы передаем функцию, которая добавляет введенные данные в бд */}
       <NewExpense onAddExpense={addExpenseHundler} />
-      {/* TODO: expenseData - данные бд (т.е отправляем данные на рендер) */}
       <Expenses expenses={expenseData} />
     </div>
   );
