@@ -1,9 +1,7 @@
 import React, { useState } from "react"
 import './ExpenseForm.css';
 
-const ExpenseForm = (props) => {
-    // console.log(props);
-    //{onSaveExpenseData: () => {} } 
+const ExpenseForm = props => {
     const [enteredTitle, setTitle] = useState('');
     const [enteredAmount, setAmount] = useState('');
     const [enteredDate, setDate] = useState('');
@@ -17,14 +15,20 @@ const ExpenseForm = (props) => {
         setDate(e.target.value);
     }
     const submitHandler = (e) => {
+        // при нажатии на submitHandler
+        // создается бд
         e.preventDefault();
         let data = {
             title: enteredTitle,
             amount: enteredAmount,
             date: new Date(enteredDate),
         }
+        // TODO: и отправляется в NewExpense.js
 
-        props.onSaveExpenseData(data);
+        if(enteredTitle === '' || enteredAmount === '' || enteredDate === ''){
+            return alert('какое то поле осталось пустым :(');
+        }
+        props.onSaveExpenseData(data)
 
         setTitle('');
         setAmount('');
@@ -58,8 +62,8 @@ const ExpenseForm = (props) => {
                 <label>Date</label>
                 <input
                     type="date"
-                    min="2021-01-01"
-                    max="2022-12-21"
+                    // min="2021-01-01" XD
+                    // max="2022-12-21"
                     onChange={dateChangeHandler}
                     value={enteredDate}
                 />

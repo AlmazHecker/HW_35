@@ -1,21 +1,27 @@
-import React, { useState } from "react"
+import React from "react"
 import ExpenseForm from "./ExpenseForm";
 import './NewExpense.css';
 
 //it's not a wrapper component
 const NewExpense = (props) => {
     //lifting up method
-    const saveExpenseDataHundler = (enteredExpenseData) => {
-        // console.log(enteredExpenseData);
-        const expenseData = {
-            ...enteredExpenseData,
+
+    //TODO: функция, переданная как, пропа в компонент ExpenseForm
+    function saveExpenseDataHundler(data) {
+        let expenseData = {
+            ...data,
             id: Math.random().toString(),
         }
 
-        props.onAddExpense(expenseData)
+        // TODO: onAddExpense - функция, переданная в качестве пропы
+        // т.е мы передаем данные формы
+        props.onAddExpense(expenseData);
     }
 
+
+
     return <div className='new-expense'>
+        {/* TODO: ExpenseForm возвращает данные и саму форму */}
         <ExpenseForm onSaveExpenseData={saveExpenseDataHundler} />
     </div>
 }

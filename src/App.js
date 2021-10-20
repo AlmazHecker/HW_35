@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React,{useState} from 'react';
 import Expenses from './components/Expense/Expenses';
 import NewExpense from './components/NewExpense/NewExpense';
 
-const INIT_STATE = [
+// TODO: типа бд
+const expenses = [
   {
     id: 'e1',
     title: 'Toilet Paper',
@@ -29,21 +30,23 @@ const INIT_STATE = [
   },
 ];
 
+
 function App() {
-  const [expenses, setExpenses] = useState(INIT_STATE);
+  const [expenseData, setExpenseData] = useState(expenses);
 
-  const addExpenseHandler = (expense) => {
-    console.log(expense);
-
-    setExpenses( prevExpenses => {
-      return [expense, ...prevExpenses]
-    })
+  function addExpenseHundler(expense) {
+    setExpenseData([
+      ...expenseData, // данные, которые были в бд 
+      expense //TODO: данные которые мы добавляем в бд
+    ])
   }
 
   return (
     <div>
-      <NewExpense onAddExpense={addExpenseHandler} />
-      <Expenses expenses={expenses} />
+      {/* TODO: в качестве пропы мы передаем функцию, которая добавляет введенные данные в бд */}
+      <NewExpense onAddExpense={addExpenseHundler} />
+      {/* TODO: expenseData - данные бд (т.е отправляем данные на рендер) */}
+      <Expenses expenses={expenseData} />
     </div>
   );
 }
